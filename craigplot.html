@@ -1,0 +1,127 @@
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+  <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+
+
+<script src="rgroups.js"></script>
+<script src="plot.js"></script>
+
+<style>
+.ui-dialog .ui-dialog-content {
+    position: relative;
+    font-size: 1.2em;
+
+}
+#canvas {
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+#canvas2 {
+  position: absolute;
+  left: 0;
+  top: 0;
+  background-color: transparent; 
+  pointer-events: none;
+}
+</style>
+
+</head>
+<body>
+
+<div style="position: relative;">
+  <canvas id="canvas" style="z-index: 1;"></canvas>
+  <canvas id="canvas2" style="z-index: 2;"></canvas>
+</div>
+
+<div id="pop" style="background-color:#fff; visibility:hidden; z-index: 1;"><img id="molimage"></img></div>
+<span id="tags"></span>
+
+<div id="info" title="About Craig plot 2.0" style="visibility:hidden;">
+  <p><b>Craig plot 2.0 by Peter Ertl</b></p>
+  <ul>
+    <li>click the point to select it</li>
+    <li>shift click to "glue" the molecule image to the point</li>
+    <li>use the option menu (the cogged wheel) to select subset of substituents based on their type, attachment point, size etc and set other options</li>
+    <li>use the menu items top left to clean the selection or download the selected substituents</li>
+    <li>you may zoom to a part of the plot by drag-select</li>
+    <li>the following shortcut keys are available: Esc (reset all), a (select all visible points), t (show tags for all visible points), c (show the "original" Craig plot)</li>
+  </ul>
+  When you find this tool useful, cite please the <a href="https://jcheminf.biomedcentral.com/">corresponding paper</a> (coming) in the Journal of Cheminformatics.
+  <p>This tool is released under the BSD-3-Clause license. The code is available at the <a href="https://github.com/peter-ertl/craigplot">Github</a>.
+</div>
+
+<div id="options" title="Options" style="visibility:hidden;">
+  Show substituents with root type:<br>
+  <select multiple id="opt-type">
+  <option value=0>all</option>
+  <option value=1>aliphatic carbon</option>
+  <option value=2>aromatic carbon</option>
+  <option value=3>carbonyl</option>
+  <option value=4>oxygen</option>
+  <option value=5>nitrogen</option>
+  <option value=6>other</option>
+  </select><br>
+  <small>(multiple selections are possible)</small>
+  <p>
+  Show only
+  <select id="opt-upto">
+  <option>all</option>
+  <option>100</option>
+  <option>200</option>
+  <option>500</option>
+  <option>1000</option>
+  <option>2000</option>
+  <option>5000</option>
+  <option>Craig set</option>
+  </select>
+  most common substituents
+  <p>
+  Show only substituents attached to:<br>
+  <select multiple id="opt-attachedto">
+  <option value=0>any atom</option>
+  <option value=1>aliphatic carbon</option>
+  <option value=2>aromatic carbon</option>
+  <option value=3>carbonyl</option>
+  <option value=4>oxygen</option>
+  <option value=5>nitrogen</option>
+  </select>
+  <br>
+  <small>(multiple selections are possible)</small>
+  <p>
+  Show substituents with up to:
+  <select id="opt-natoms">
+  <option>all</option>
+  <option>10</option>
+  <option>8</option>
+  <option>5</option>
+  </select> 
+  atoms
+  <p>
+  <input type="checkbox" id="opt-legend" checked>Show legend
+  &nbsp;&nbsp;
+  <input type="checkbox" id="opt-axes">Show axes
+  &nbsp;&nbsp;
+  <input type="checkbox" id="opt-smallimg">Small molecule images
+  <p>
+  <button id="opt-submit">Update plot</button>
+  <button id="opt-reset">Reset all</button>
+  <button id="opt-cancel">Cancel</button>
+
+</div>
+
+<a href="#" id="download" download="selected.txt" type="text/plain"></a>
+
+<script src="https://www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-2389311-1";
+urchinTracker();
+</script>
+
+</body>
+</html>
